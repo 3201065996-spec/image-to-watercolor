@@ -45,7 +45,7 @@ From the image, invent **original** English copy (do not copy watermarks or bran
 |---------|--------|
 | Title | 2–6 words, evocative, portfolio-like |
 | Subtitle | One short phrase (about 4–12 words) |
-| 4 colors | Representative, harmonious; pick from the scene. Under each circle print its **hex 色号** only (e.g. `#E85A4F`) — no English color names |
+| 4 colors | Representative, harmonious, **light pastel bias**. Under each circle print its **hex 色号** only (e.g. `#E8A4B0`) — no English color names; avoid deep/muddy hex |
 | Prop icon | One minimal pencil line icon echoing a signature prop (glasses, beanie, collar, etc.) |
 | Stamp | One faint round watercolor stamp in a **corner of the paper**; 1–3 uppercase words, e.g. WINTER LIGHT / DAY RIDE — never as in-scene signage |
 | Detail inset | One small close-up (eyes+glasses, hands on collar, etc.) with pencil line frame only |
@@ -113,10 +113,28 @@ Call `GenerateImage` with:
 
 - `reference_image_paths`: `[user's image path]`
 - `description`: build from the **Master prompt** below (fill placeholders)
-- `filename`: optional, e.g. `watercolor-<short-slug>.png`
+- `filename`: optional, e.g. `watercolor-<short-slug>.png` (filename only; tool may temp-save elsewhere)
 - `aspect_ratio`: **must match the uploaded image** (see below) — never default to `3:4` / `4:3` by habit
 
 Do **not** invent a separate background plate behind the artwork. The output IS the paper.
+
+### Output save path
+
+Do **not** hardcode a machine-specific drive (e.g. `E:\图片`). Paths must work for any user after open-source install.
+
+**Resolve output directory in this order:**
+
+1. Path the user explicitly gives this turn (highest priority)
+2. Else if the workspace has `.cursor/skills/image-to-watercolor/` or the skill lives in the repo → save under workspace `output/watercolor/` (create if missing)
+3. Else → save under the current workspace root `output/watercolor/`
+4. If the user asks to keep the tool’s default location, leave the file where `GenerateImage` saved it
+
+**After generate:**
+
+1. `GenerateImage` may temp-save under Cursor `assets/` — that is fine as a temporary path
+2. Copy/move the final file into the resolved `output/watercolor/` (or user path), creating folders as needed
+3. Prefer telling the user the **final** path under `output/watercolor/` (or their custom path)
+4. Optional cleanup: remove duplicate temp copies in Cursor `assets/` only when you successfully saved to the output folder and the user did not ask to keep temps
 
 ### Match input size
 
@@ -159,8 +177,9 @@ Before finishing, verify the result against every rule in **画纸与绘制方�
 - Stamp missing from corner, OR stamp is in-scene (cake stick, sign, bottle label), OR stamp looks like a hard sticker / UI badge / opaque logo with sharp edge or drop shadow
 - Inset looks like a hard sticker, photo frame, or opaque card on the paper
 - Overly clean digital look with zero water stains / accidental marks when accidents were not opted out
+- Color style too deep / heavy / muddy / over-saturated (fails light airy wash look) — regenerate with lighter, softer, higher-key washes only; keep layout/stamp/inset/hex/extras the same
 
-Corrective regen must explicitly say: dissolve edges into paper, transparent washes, paper grain visible through pigment, no floating rectangle; redraw **corner circular watercolor stamp** (not in-scene text); redraw inset as pencil + watercolor on the same sheet.
+Corrective regen must explicitly say: dissolve edges into paper, transparent washes, paper grain visible through pigment, no floating rectangle; redraw **corner circular watercolor stamp** (not in-scene text); redraw inset as pencil + watercolor on the same sheet; if only color is wrong: **lighten palette, keep all other elements**.
 
 ---
 
@@ -186,6 +205,14 @@ PAPER–PAINT FUSION (critical — avoid “picture glued on paper”):
 - Background and secondary areas stay light and open; do not paint a solid opaque backdrop behind the subject
 - Subject and setting share the same wet-into-wet paper surface; no cutout silhouette with uniform white halo
 - Margins around the painting are the same paper continuing outward, not a different white layer
+
+COLOR STYLE (critical — light & airy like Soft Blush Nails v1; layout/extras stay like v2):
+- Target the **lighter, fresher** color feel of a first successful light pass: pale peach, soft blush pink, cream, misty blue-gray — NOT a deeper, denser, more shadowed second pass
+- Keep overall value high-key; leave plenty of paper white in midtones; avoid muddy, heavy, over-saturated, or darkened fills
+- Skin, fabric, nails, and soft backgrounds stay translucent and bright; do not push shadows into deep brown/gray/violet slabs
+- Accent colors may be a touch clearer, but still soft pastel — never neon, never ink-dense
+- Hex swatches must also bias lighter pastels to match this airy look
+- If regenerating only for color: lighten washes only — keep stamp, inset, hex placement, layout, and pigment accidents unchanged
 
 PAINTING — painted directly on the paper:
 - People, environment, sky, plants, and other elements in watercolor with light ink/pencil line work
@@ -213,7 +240,7 @@ LAYOUT — typography and swatches:
 - No colored text panels or boxes
 
 FINAL LOOK:
-Portfolio sheet like Soft Pink Companion layout: upper watercolor scene dissolving into paper with subtle pigment accidents; a soft circular corner stamp; bottom blank band with centered title, subtitle, and four round swatches each labeled with hex; plus prop icon and pencil inset — all on one paper.
+Portfolio sheet like Soft Pink Companion layout with **light airy pastel color** (not deep/muddy): upper watercolor scene dissolving into paper with subtle pigment accidents; a soft circular corner stamp; bottom blank band with centered title, subtitle, and four round swatches each labeled with hex; plus prop icon and pencil inset — all on one paper.
 ```
 
 ---
@@ -241,6 +268,12 @@ Portfolio sheet like Soft Pink Companion layout: upper watercolor scene dissolvi
 - 画面边缘允许出现自然的颜料渐淡、干笔痕迹和不规则水彩边界。
 - 局部保留未着色的白纸，让纸白直接参与画面的高光、云朵、留白和空间表现。
 - 不要给整张作品统一覆盖米黄色滤镜，不要人为制造撕纸边框。
+
+**颜色风格（只调色感，不改版式）**
+- 以色感参考「美甲第一版」的浅淡清透：粉、桃、米白、雾蓝灰等**第一遍淡彩**；禁止「第二版」那种发深、发闷、阴影加重的二次压色。
+- 中间调多留纸白；阴影保持轻薄，不要压成深棕/深灰/深紫实底。
+- 强调色可稍清亮，但仍柔和 pastel；色卡 hex 也倾向浅淡。
+- 版式、角落印章、局部特写、色号、偶然感等**一律保持第二版完整效果**；质检若只有颜色偏深：重生成时**只提亮淡化色感**，其余不变。
 
 **版式（必须，参考 Soft Pink Companion 结构）**
 - 整张画布即一张连续水彩纸；主插画**偏小**，约占上方居中 60–65%，左右留出纸边，边缘晕入纸面；底部约 35–40% 为干净留白带。禁止主画铺满或占高超过约 70%。
@@ -273,6 +306,7 @@ Honor explicit user choices when given:
 - Opt out of any creative extra (including pigment accidents)
 - Crop or focus on a region of the photo
 - Explicit aspect ratio override (otherwise always follow upload size)
+- Custom output folder (otherwise `output/watercolor/` under the workspace)
 - More / less line work, denser / lighter wash
 
 If the user only says “转成手绘图” with an image, run the full default workflow above.
@@ -280,5 +314,6 @@ If the user only says “转成手绘图” with an image, run the full default 
 ## Output to user
 
 1. Show the generated image (tool display is enough; do not dump the full prompt unless asked).
-2. List title, subtitle, four hex (also printed under swatches on the image), prop icon, stamp text, detail inset, and input size → `aspect_ratio` used.
-3. Offer one short revision pass if they want different text, palette, stamp, inset, or composition emphasis.
+2. Confirm the final saved path (`output/watercolor/...` or the user-specified folder).
+3. List title, subtitle, four hex (also printed under swatches on the image), prop icon, stamp text, detail inset, and input size → `aspect_ratio` used.
+4. Offer one short revision pass if they want different text, palette, stamp, inset, or composition emphasis.

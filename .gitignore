@@ -14,3 +14,7 @@ tmp/
 temp/
 *.local.png
 *.local.jpg
+
+# Generated watercolor outputs (keep folder placeholder)
+output/watercolor/*
+!output/watercolor/.gitkeep

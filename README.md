@@ -7,9 +7,11 @@ A Cursor [Agent Skill](https://cursor.com/docs/skills) that turns a reference im
 ## Features
 
 - 原生水彩纸感（颜料渗入纸纹，边缘晕开，不是「贴图在白底上」）
+- 颜色偏浅淡清透（高调淡彩），避免发深发闷
 - 固定版式：上方主画约 60–65%，底部留白放标题 / 副标题 / 四色色号
 - 创意细节：道具线稿图标、角落淡彩印章、铅笔框局部特写、轻微水渍
 - 输出比例跟随上传图（`1:1` / `4:3` / `3:4` / `16:9` / `9:16`）
+- 生成结果默认保存到工作区 `output/watercolor/`（可自定义路径；不写死本机盘符）
 
 ## Requirements
 
