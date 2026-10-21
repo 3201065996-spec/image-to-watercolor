@@ -48,22 +48,25 @@ From the image, invent **original** English copy (do not copy watermarks or bran
 | 4 colors | Representative, harmonious, **light pastel bias**. Under each circle print its **hex 色号** only (e.g. `#E8A4B0`) — no English color names; avoid deep/muddy hex |
 | Prop icon | One minimal pencil line icon echoing a signature prop (glasses, beanie, collar, etc.) |
 | Stamp | One faint round watercolor stamp in a **corner of the paper**; 1–3 uppercase words, e.g. WINTER LIGHT / DAY RIDE — never as in-scene signage |
-| Detail inset | One small close-up (eyes+glasses, hands on collar, etc.) with pencil line frame only |
+| Detail inset | One small close-up with pencil line frame only; **when a person is the main subject, inset must prioritize that person** (face / eyes / hands / outfit on the body) — not props or scenery alone |
 
-**People-first English (required when a person is the main subject):**
+**People-first English + inset (required when a person is the main subject):**
 
 - Title and subtitle must center on the **person** — presence, expression, pose, outfit, or intimate mood — not the place, weather, or props alone.
 - Scene/setting may appear only as a light supporting hint in the subtitle; never let the environment own the title.
 - Prefer person-led phrasing (who / how they feel / what they wear) over place-led phrasing (window, street, park, room as the hero noun).
-- No people / non-portrait scene → title may focus on place, object, or atmosphere as usual.
+- **Detail inset (局部特写) — person first:** crop must feature the person’s face, eyes, expression, hands, hair, or clothing on the body. Props may appear only as a secondary touch (e.g. fingers on a handle); never let umbrella / food / leaves / lantern / scenery own the inset alone.
+- No people / non-portrait scene → title and inset may focus on place, object, or atmosphere as usual.
 
 Examples when a person is present:
 
-| Avoid (place-led) | Prefer (person-led) |
-|-------------------|---------------------|
+| Avoid (place / prop-led) | Prefer (person-led) |
+|--------------------------|---------------------|
 | Soft Window Light | Soft Pink Companion |
 | Parking Lot Afternoon | Quiet Smile in Pink |
 | subtitle: sunlight through the glass | subtitle: she holds her collar, eyes soft |
+| inset: clear umbrella dome / raindrops only | inset: eyes + soft pink lip, calm gaze |
+| inset: leaves, path lantern, playground | inset: hand on collar / pink handle (hand is hero) |
 
 **Creative extras (always include unless user opts out):**
 
@@ -73,7 +76,7 @@ Examples when a person is present:
    - Look: semi-transparent wash, bloomed/soft edges, like a journal/planner stamp fused into the paper (手账感) — pigment in the paper fiber, not a hard UI badge, not a floating sticker with drop shadow.
    - Text: 1–3 short uppercase words, e.g. `WINTER LIGHT`, `DAY RIDE`, `SWEET HOUR`, `LANTERN EVE`.
    - **Forbidden:** putting the phrase on cake toppers, bottles, ribbons, street signs, or any object inside the illustration; square seals that look like logos; opaque hard-edged stickers.
-4. **Detail inset** — Small watercolor close-up with pencil line frame only, placed in a side/upper margin of the **painted** area (not in the bottom 留白 band with title/swatches). Never a card, white mat, drop shadow, or hard rectangular panel.
+4. **Detail inset** — Small watercolor close-up with pencil line frame only, placed in a side/upper margin of the **painted** area (not in the bottom 留白 band with title/swatches). Never a card, white mat, drop shadow, or hard rectangular panel. **When a person is the main subject, the inset must prioritize that person** (face, eyes, expression, hands, hair, or outfit on the body); props/scenery only as a secondary touch — never prop- or place-only crops.
 5. **Pigment accidents（颜料偶然感）** — Intentionally leave **1–2** soft pale-pink and/or gray-blue water stains, splatters, or slightly unclean brush marks on the paper (near painting edges or in the blank margin). Subtle “just finished painting” realism — not messy, not covering title/swatches.
 
 ### Sheet layout (canonical — match this structure)
@@ -183,6 +186,7 @@ After generate, **Read the output image** (not only trust the tool thumbnail). V
 - Color swatches overlapping painted washes, in a corner, or not on bare paper under the centered title/subtitle
 - Stamp missing from corner, OR stamp is in-scene (cake stick, sign, bottle label), OR stamp looks like a hard sticker / UI badge / opaque logo with sharp edge or drop shadow
 - Inset looks like a hard sticker, photo frame, or opaque card on the paper
+- When a person is the main subject: inset is prop-/scenery-only (umbrella dome, food, leaves, lantern, path) with the person absent or only incidental — fail and regenerate with a person-first crop
 - Overly clean digital look with zero water stains / accidental marks when accidents were not opted out
 - Color style too deep / heavy / muddy / over-saturated (fails light airy wash look) — regenerate with lighter, softer, higher-key washes only; keep layout/stamp/inset/hex/extras the same
 
@@ -197,7 +201,7 @@ FUSION FIX (mandatory — previous result looked glued-on):
 - Same title, subtitle, hex swatches, prop icon, corner stamp, detail inset, and sheet layout as specified
 ```
 
-**Corrective regen — other:** redraw **corner circular watercolor stamp** (not in-scene text); redraw inset as pencil + watercolor on the same sheet; if only color is wrong: **lighten palette, keep all other elements**.
+**Corrective regen — other:** redraw **corner circular watercolor stamp** (not in-scene text); redraw inset as pencil + watercolor on the same sheet; if person present but inset was prop-/scenery-only: **redraw inset person-first** (face/eyes/hands/outfit); if only color is wrong: **lighten palette, keep all other elements**.
 
 ---
 
@@ -257,7 +261,7 @@ LAYOUT — typography and swatches:
 - Four circular color swatches on bare paper only, colors: {c1}, {c2}, {c3}, {c4}
 - Under each circle print its hex 色号 in tiny type: {c1}, {c2}, {c3}, {c4} — hex only, no English color names
 - Season/moment stamp REQUIRED in a paper CORNER: soft circular watercolor wash stamp, semi-transparent, bloomed edges, journal-stamp feel fused into paper; text: {stamp} (e.g. WINTER LIGHT / DAY RIDE). NOT inside the scene on props; NOT bottom title/swatch band; NOT hard sticker/UI badge
-- Detail inset in side/upper painted margin: {inset}; pencil frame only; no card/mat/shadow
+- Detail inset in side/upper painted margin: {inset}; pencil frame only; no card/mat/shadow. If a person is the main subject, the inset MUST be person-first (face/eyes/hands/outfit on the body) — props only secondary; never prop- or scenery-only
 - No colored text panels or boxes
 
 FINAL LOOK:
@@ -314,7 +318,7 @@ Portfolio sheet like Soft Pink Companion layout with **light airy pastel color**
 **创意细节（默认开启）**
 - **道具符号**：标题旁或色点旁画一枚极简铅笔线稿小图标（眼镜、针织帽轮廓、衣领/扣等），呼应人物道具，无底板、无投影。
 - **季节/时刻小印章**：在纸面**角落**盖一枚淡水彩**圆形**印章文案（如 WINTER LIGHT、DAY RIDE、SWEET HOUR），半透明、边缘晕开，像手账贴纸但颜料渗入纸面；禁止硬边 UI 徽章、投影贴纸；**禁止**把文案画成画面内的蛋糕插牌、路牌、瓶标等道具文字。
-- **局部放大**：主画面旁加一小块淡彩特写（如眼睛+眼镜、手握衣领）；线框仅为铅笔细线，禁止卡片底板、白卡垫或投影相框。
+- **局部放大（优先突出人）**：主画面旁加一小块淡彩特写；有人物时必须优先特写人物本体（脸/眼神/表情/手/发丝/身上衣物），道具只可作次要陪衬（如手指握伞柄）；禁止只画伞面、食物、叶子、灯笼、风景等无人物的特写。线框仅为铅笔细线，禁止卡片底板、白卡垫或投影相框。
 - **颜料偶然感**：故意留 1–2 处淡粉/灰蓝水渍溅点或未洗干净的笔触，增强「刚画完」的真实感；克制、自然，勿盖住标题与色卡。
 
 **最终视觉目标**
