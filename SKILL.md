@@ -100,6 +100,7 @@ Rules:
 - Main painting is **compact**: upper-center, not filling the sheet; leave clear paper on left/right and a **generous** bottom 留白.
 - Do **not** let the illustration run edge-to-edge or dominate ~75%+ of the height.
 - Paint edges irregularly dissolve into paper (no hard rectangle crop of the scene).
+- The ASCII box above is **layout guidance only** — never render it as a drawn frame, border, or “picture window” in the output.
 - In the bottom 留白, top-to-bottom order: **title → subtitle → four circular swatches → hex under each** (all horizontally centered).
 - Swatches sit only on bare paper white — never on pigment; each circle has its **hex 色号** underneath; no English color names; even breathing space between painting edge, text, and swatches.
 - Prop icon beside title; stamp + inset stay out of the bottom centered text/swatch stack.
@@ -163,12 +164,18 @@ Do **not** hardcode a machine-specific drive (e.g. `E:\图片`). Paths must work
 
 ### 4. Quality gate (must pass)
 
-Before finishing, verify the result against every rule in **画纸与绘制方式**, especially **纸画融合**. Fail and regenerate once if any of these appear:
+After generate, **Read the output image** (not only trust the tool thumbnail). Verify against every rule in **画纸与绘制方式**, especially **纸画融合**. Fail and regenerate (up to **2** times for fusion/layout failures; **1** time for color-only) if any of these appear:
 
-- Illustration looks like a sticker / cutout / opaque photo-filter block sitting on blank paper
-- Hard rectangular paint boundary, sharp vignette box, or clear “picture area vs margin” split
-- Background fills are dense/opaque so paper tooth cannot be seen through the wash
-- Scene edges do not dissolve into the sheet; paper grain missing inside painted areas
+**纸画融合（优先判失败 — 贴图感）**
+- Illustration looks like a sticker / cutout / opaque photo-filter / “printed photo” block sitting on blank paper
+- Hard rectangular paint boundary, sharp vignette box, ruled margin line, or clear “picture area vs margin” split (上下分层：上图下纸)
+- Scene reads as a floating rectangle or rounded card with even white/cream halo around it
+- Background fills are dense/opaque (esp. solid night black, flat wall, solid sky) so paper tooth cannot be seen through the wash
+- Paper grain missing **inside** painted midtones/sky/water — only visible in the blank margin
+- Scene edges stop abruptly instead of feather / bloom / dry-brush into the sheet
+- Subject cutout with uniform white outline; or photo-like detail density with no wash transparency
+
+**版式与配件**
 - Card backdrop, frame, drop shadow, beige filter, torn edges, text on a colored panel, or square/rectangular color chips (must be circular)
 - Missing any of: prop icon, season/moment stamp, detail inset, pigment accidents (unless user opted out)
 - Missing hex 色号 under any of the four color circles, or English color names under swatches instead of/in addition to hex
@@ -179,7 +186,18 @@ Before finishing, verify the result against every rule in **画纸与绘制方�
 - Overly clean digital look with zero water stains / accidental marks when accidents were not opted out
 - Color style too deep / heavy / muddy / over-saturated (fails light airy wash look) — regenerate with lighter, softer, higher-key washes only; keep layout/stamp/inset/hex/extras the same
 
-Corrective regen must explicitly say: dissolve edges into paper, transparent washes, paper grain visible through pigment, no floating rectangle; redraw **corner circular watercolor stamp** (not in-scene text); redraw inset as pencil + watercolor on the same sheet; if only color is wrong: **lighten palette, keep all other elements**.
+**Corrective regen — fusion failure (paste this block into `description`, keep title/hex/stamp/inset/layout same):**
+```
+FUSION FIX (mandatory — previous result looked glued-on):
+- Repaint as pigment IN the same continuous watercolor sheet — NOT a picture pasted on paper
+- DELETE any rectangular/rounded illustration frame, sharp vignette, even halo, or picture-vs-margin split
+- Outer 15–25% of the painted scene must irregularly dissolve: feather, bloom, dry-brush, broken edges into bare paper
+- All washes translucent; paper fiber/grain MUST show through sky, water, walls, and midtones — not only in margins
+- No opaque photo fill, no solid black night plate, no cutout silhouette
+- Same title, subtitle, hex swatches, prop icon, corner stamp, detail inset, and sheet layout as specified
+```
+
+**Corrective regen — other:** redraw **corner circular watercolor stamp** (not in-scene text); redraw inset as pencil + watercolor on the same sheet; if only color is wrong: **lighten palette, keep all other elements**.
 
 ---
 
@@ -199,12 +217,15 @@ SURFACE — white watercolor paper as the entire artwork (not a drawing placed o
 - The same continuous paper extends through the illustration, English title, subtitle, and circular color swatches — one flat sheet, no layered planes
 - No separate background board, card base, photo frame, drop shadow, or extra rectangular mat
 
-PAPER–PAINT FUSION (critical — avoid “picture glued on paper”):
-- Pigment soaks into the paper; washes are translucent so fiber/grain shows through sky, walls, skin midtones, and soft backgrounds
-- Outer edges of the scene feather, bloom, or dry-brush away into bare paper — never a hard rectangular crop or filled illustration box
-- Background and secondary areas stay light and open; do not paint a solid opaque backdrop behind the subject
-- Subject and setting share the same wet-into-wet paper surface; no cutout silhouette with uniform white halo
-- Margins around the painting are the same paper continuing outward, not a different white layer
+PAPER–PAINT FUSION (critical — highest priority — avoid “picture glued on paper”):
+- Think: one wet watercolor sheet where paint was brushed onto paper — NEVER a finished illustration composited onto a paper texture background
+- Pigment soaks into the paper; every wash stays translucent so fiber/grain shows through sky, water, walls, skin midtones, and soft backgrounds (grain inside the paint, not only in empty margins)
+- Outer 15–25% of the painted scene must irregularly dissolve: feather, bloom, dry-brush, broken/uneven edges into bare paper — never a hard rectangular crop, rounded card, sharp vignette, or ruled frame line
+- Do NOT draw a “picture window” or keep a clear horizontal split of “dense painting above / clean paper below”; the bottom of the scene should fray and lighten into the title band
+- Background and secondary areas stay light and open; replace opaque photo blacks/nights/walls with soft diluted washes and paper-white gaps
+- Subject and setting share the same wet-into-wet paper surface; no cutout silhouette, no uniform white/cream halo around the scene, no drop shadow under the painting
+- Margins are the same continuous paper — not a second white layer behind a floating artwork
+- Forbidden looks: sticker on paper, photo filter block, postcard, framed print, app mockup of artwork on textured BG
 
 COLOR STYLE (critical — light & airy like Soft Blush Nails v1; layout/extras stay like v2):
 - Target the **lighter, fresher** color feel of a first successful light pass: pale peach, soft blush pink, cream, misty blue-gray — NOT a deeper, denser, more shadowed second pass
@@ -240,7 +261,7 @@ LAYOUT — typography and swatches:
 - No colored text panels or boxes
 
 FINAL LOOK:
-Portfolio sheet like Soft Pink Companion layout with **light airy pastel color** (not deep/muddy): upper watercolor scene dissolving into paper with subtle pigment accidents; a soft circular corner stamp; bottom blank band with centered title, subtitle, and four round swatches each labeled with hex; plus prop icon and pencil inset — all on one paper.
+Portfolio sheet like Soft Pink Companion layout with **light airy pastel color** (not deep/muddy): upper watercolor scene **dissolving into the same paper** (no glued rectangle) with subtle pigment accidents; a soft circular corner stamp; bottom blank band with centered title, subtitle, and four round swatches each labeled with hex; plus prop icon and pencil inset — all on one paper. Paper grain visible through painted washes.
 ```
 
 ---
@@ -255,12 +276,15 @@ Portfolio sheet like Soft Pink Companion layout with **light airy pastel color**
 - 纸张从插画区域连续延伸至英文标题、副标题和配色卡区域。
 - 禁止添加独立的背景板、卡片底板、相框、投影或额外的矩形衬底。
 
-**纸画融合（重点）**
-- 颜料渗入纸纤维，淡彩层保持透明，纸纹须透过天空、背景、皮肤中间调等大面积色块可见。
-- 画面外缘须自然晕开、干笔收束或溶入纸白，禁止出现生硬矩形画框、实心底图块或「上图画、下留白」的分层感。
-- 背景与次要区域保持轻薄留白，勿把场景画成不透纸的厚涂底板。
-- 主体与环境处于同一纸面湿画关系中，禁止抠图描边式剪影或均匀白边贴图感。
-- 插画四周的空白就是同一张水彩纸的延续，不是另外叠上去的白底。
+**纸画融合（最高优先级 — 防贴图感）**
+- 心智模型：颜料刷在同一张湿水彩纸上；绝不是「先画好插画再贴到纸纹背景上」。
+- 颜料渗入纸纤维，淡彩保持透明；纸纹须透过天空、水面、墙面、皮肤中间调等**画内**色块可见（不能只在空白留白区有纸纹）。
+- 画面外缘约 15–25% 须不规则溶入纸白：晕开、渍边、干笔、断续边缘；禁止矩形画框、圆角卡片、锐利暗角、分隔线。
+- 禁止「上图下纸」硬分层：场景下沿应逐渐变淡、碎开，溶入标题留白带，而不是一条齐整裁切边。
+- 背景与次要区域轻薄留白；照片里的死黑夜空/实墙改为稀释淡彩 + 纸白空隙，勿厚涂不透纸。
+- 主体与环境同一湿画关系；禁止抠图剪影、均匀白/米白光晕描边、画面下方投影。
+- 四周空白是同一张纸的延续，不是第二层白底。
+- 禁止观感：贴纸、滤镜照片块、明信片、装框打印稿、贴在纸纹上的 app 效果图。
 
 **绘画要求**
 - 人物、环境、天空、植物和其他场景元素均以水彩与淡彩线稿的方式直接绘制在纸面上。
@@ -295,6 +319,18 @@ Portfolio sheet like Soft Pink Companion layout with **light airy pastel color**
 
 **最终视觉目标**
 呈现一张真实的白色水彩纸作品：纸面有细腻肌理，颜料与纸张自然融合，带轻微颜料偶然痕迹，画面具有日系清新水彩插画和淡彩铅笔线稿质感；底部为英文标题、副标题与带色号的圆形色点，并含道具小图标、淡彩印章与铅笔框局部特写，全部画在同一张纸上。
+
+---
+
+## Fusion troubleshooting（给维护者 / 改 skill 时）
+
+若某些模型仍把画面画成「贴在纸上的插图」，优先改这三处（本 skill 已加强）：
+
+1. **Master prompt → `PAPER–PAINT FUSION`**：用可执行否定句（禁止矩形窗、均匀光晕、死黑底板）+ 可执行肯定句（外缘 15–25% 溶边、画内可见纸纹）。
+2. **Quality gate**：生成后必须 `Read` 输出图；贴图感判失败，最多重试 2 次，并粘贴 **FUSION FIX** 块重生成。
+3. **版式示意**：ASCII 框仅作结构说明，明确禁止画成画框；避免模型把「上图下留白」理解成硬裁切分层。
+
+勿靠加长无关文案；融合相关句子应短、硬、可检查。颜色偏深与融合失败分开处理（前者只提亮，后者只修溶边/透明度）。
 
 ---
 
